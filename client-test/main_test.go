@@ -24,9 +24,10 @@ func TestUser(t *testing.T) {
 		t.Fatalf("Could not parse file: %v", err)
 	}
 
-	_, err = client.SignUp(context.Background(), user)
+	r, err := client.SignUp(context.Background(), user)
 	if err != nil {
 		t.Fatalf("Could not sign up: %v", err)
 	}
+	t.Log(r.ErrorString)
 
 }

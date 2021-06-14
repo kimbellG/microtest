@@ -4,13 +4,11 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"net"
 	"sync"
 
 	pb "microtest/user/proto/user"
 
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
+	"github.com/micro/go-micro/v2"
 )
 
 const (
@@ -33,37 +31,35 @@ func (r *Repository) AddUser(user *pb.UserInfo) (*pb.UserInfo, error) {
 	return user, nil
 }
 
-type service struct {
+type userService struct {
 	r repo
 }
 
-func (s *service) SignUp(ctx context.Context, user *pb.UserInfo) (*pb.Response, error) {
+func (s *userService) SignUp(ctx context.Context, user *pb.UserInfo, resp *pb.Response) error {
 	_, err := s.r.AddUser(user)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return &pb.Response{
-		IsCreated:   true,
-		ErrorString: "Успех.",
-	}, nil
+	resp.IsCreated = true
+	resp.ErrorString = "Успех"
+	return nil
 }
 
 func main() {
 	r := &Repository{}
 
-	lis, err := net.Listen("tcp", port)
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+	service := micro.NewService(
+		micro.Name("user.service"),
+	)
+
+	service.Init()
+
+	if err := pb.RegisterAuthServiceHandler(service.Server(), &userService{r}); err != nil {
+		log.Panic(err)
 	}
 
-	s := grpc.NewServer()
-
-	pb.RegisterAuthServiceServer(s, &service{r})
-	reflection.Register(s)
-
-	log.Println("Running on port: ", port)
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
+	if err := service.Run(); err != nil {
+		log.Panic(err)
 	}
 }

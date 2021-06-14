@@ -1,10 +1,14 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 	pb "microtest/user/proto/user"
 	"os"
+
+	micro "github.com/micro/go-micro/v2"
 )
 
 const (
@@ -13,6 +17,7 @@ const (
 )
 
 func parseFile(file string) (*pb.UserInfo, error) {
+
 	result := &pb.UserInfo{}
 	fileStream, err := os.Open(file)
 	if err != nil {
@@ -27,5 +32,20 @@ func parseFile(file string) (*pb.UserInfo, error) {
 }
 
 func main() {
+	service := micro.NewService(micro.Name("user.cli"))
+	service.Init()
 
+	client := pb.NewAuthService("user.service", service.Client())
+
+	file := defaultFilename
+
+	test, err := parseFile(file)
+	if err != nil {
+		log.Fatalf("could not parse file: %v", err)
+	}
+
+	_, err = client.SignUp(context.Background(), test)
+	if err != nil {
+		log.Fatalf("sign up: %v", err)
+	}
 }

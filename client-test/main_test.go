@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	pb "microtest/user/proto/user"
+	pb "github.com/kimbellG/microtest/user/proto/user"
 
 	"google.golang.org/grpc"
 )

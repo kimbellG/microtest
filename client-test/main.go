@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	pb "microtest/user/proto/user"
 	"os"
 
+	pb "github.com/kimbellG/microtest/user/proto/user"
 	micro "github.com/micro/go-micro/v2"
 )
 

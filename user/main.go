@@ -6,9 +6,9 @@ import (
 	"log"
 	"sync"
 
-	pb "microtest/user/proto/user"
+	pb "github.com/kimbellG/microtest/user/proto/user"
 
-	"github.com/micro/go-micro/v2"
+	micro "github.com/micro/go-micro/v2"
 )
 
 const (

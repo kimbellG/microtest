@@ -1,4 +1,4 @@
-module microtest/user
+module github.com/kimbellG/microtest/user
 
 go 1.16
 

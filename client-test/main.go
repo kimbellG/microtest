@@ -35,7 +35,7 @@ func main() {
 	service := micro.NewService(micro.Name("user.cli"))
 	service.Init()
 
-	client := pb.NewAuthService("user.service", service.Client())
+	client := pb.NewAuthService("AuthService", service.Client())
 
 	file := defaultFilename
 

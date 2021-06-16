@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "proto/timer";
+
+service Timer {
+    rpc Wait(Request) returns(Response) {}
+}
+
+message Request {
+    int64 t = 1;
+}
+
+message Response {
+    bool isOK = 1;
+}

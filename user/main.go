@@ -50,7 +50,7 @@ func main() {
 	r := &Repository{}
 
 	service := micro.NewService(
-		micro.Name("user.service"),
+		micro.Name("AuthService"),
 	)
 
 	service.Init()

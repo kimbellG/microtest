@@ -42,7 +42,7 @@ func NewTimerEndpoints() []*api.Endpoint {
 // Client API for Timer service
 
 type TimerService interface {
-	Wait(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error)
+	Wait(ctx context.Context, in *TimerRequest, opts ...client.CallOption) (*TimerResponse, error)
 }
 
 type timerService struct {
@@ -57,9 +57,9 @@ func NewTimerService(name string, c client.Client) TimerService {
 	}
 }
 
-func (c *timerService) Wait(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error) {
+func (c *timerService) Wait(ctx context.Context, in *TimerRequest, opts ...client.CallOption) (*TimerResponse, error) {
 	req := c.c.NewRequest(c.name, "Timer.Wait", in)
-	out := new(Response)
+	out := new(TimerResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -70,12 +70,12 @@ func (c *timerService) Wait(ctx context.Context, in *Request, opts ...client.Cal
 // Server API for Timer service
 
 type TimerHandler interface {
-	Wait(context.Context, *Request, *Response) error
+	Wait(context.Context, *TimerRequest, *TimerResponse) error
 }
 
 func RegisterTimerHandler(s server.Server, hdlr TimerHandler, opts ...server.HandlerOption) error {
 	type timer interface {
-		Wait(ctx context.Context, in *Request, out *Response) error
+		Wait(ctx context.Context, in *TimerRequest, out *TimerResponse) error
 	}
 	type Timer struct {
 		timer
@@ -88,6 +88,6 @@ type timerHandler struct {
 	TimerHandler
 }
 
-func (h *timerHandler) Wait(ctx context.Context, in *Request, out *Response) error {
+func (h *timerHandler) Wait(ctx context.Context, in *TimerRequest, out *TimerResponse) error {
 	return h.TimerHandler.Wait(ctx, in, out)
 }

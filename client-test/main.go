@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
+	timer "github.com/kimbellG/microtest/timer/proto/timer"
 	pb "github.com/kimbellG/microtest/user/proto/user"
 	micro "github.com/micro/go-micro/v2"
 )
@@ -36,6 +38,7 @@ func main() {
 	service.Init()
 
 	client := pb.NewAuthService("AuthService", service.Client())
+	t := timer.NewTimerService("Timer", service.Client())
 
 	file := defaultFilename
 
@@ -48,4 +51,15 @@ func main() {
 	if err != nil {
 		log.Fatalf("sign up: %v", err)
 	}
+
+	fmt.Println("Start timer")
+	resp, err := t.Wait(context.Background(), &timer.Request{T: int64(time.Second * 10)})
+
+	if err != nil {
+		log.Fatalln("wait timer:", err)
+	}
+
+	fmt.Println("Timer is end")
+	fmt.Printf("resp: %t", resp.IsOK)
+
 }

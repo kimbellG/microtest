@@ -1,9 +1,11 @@
 syntax = "proto3";
 
+package user;
+
 option go_package = "proto/user"; 
 
 service AuthService {
-    rpc SignUp (UserInfo) returns (Response);
+    rpc SignUp (UserInfo) returns (UserResponse);
 }
 
 message UserInfo {
@@ -15,7 +17,7 @@ message UserInfo {
     string birth_day = 6;
 }
 
-message Response {
+message UserResponse {
   bool isCreated = 1;
   string errorString = 2;
 }

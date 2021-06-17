@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Request struct {
+type TimerRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -28,8 +28,8 @@ type Request struct {
 	T int64 `protobuf:"varint,1,opt,name=t,proto3" json:"t,omitempty"`
 }
 
-func (x *Request) Reset() {
-	*x = Request{}
+func (x *TimerRequest) Reset() {
+	*x = TimerRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_timer_timer_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -37,13 +37,13 @@ func (x *Request) Reset() {
 	}
 }
 
-func (x *Request) String() string {
+func (x *TimerRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Request) ProtoMessage() {}
+func (*TimerRequest) ProtoMessage() {}
 
-func (x *Request) ProtoReflect() protoreflect.Message {
+func (x *TimerRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_timer_timer_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,19 +55,19 @@ func (x *Request) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Request.ProtoReflect.Descriptor instead.
-func (*Request) Descriptor() ([]byte, []int) {
+// Deprecated: Use TimerRequest.ProtoReflect.Descriptor instead.
+func (*TimerRequest) Descriptor() ([]byte, []int) {
 	return file_proto_timer_timer_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Request) GetT() int64 {
+func (x *TimerRequest) GetT() int64 {
 	if x != nil {
 		return x.T
 	}
 	return 0
 }
 
-type Response struct {
+type TimerResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -75,8 +75,8 @@ type Response struct {
 	IsOK bool `protobuf:"varint,1,opt,name=isOK,proto3" json:"isOK,omitempty"`
 }
 
-func (x *Response) Reset() {
-	*x = Response{}
+func (x *TimerResponse) Reset() {
+	*x = TimerResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_timer_timer_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -84,13 +84,13 @@ func (x *Response) Reset() {
 	}
 }
 
-func (x *Response) String() string {
+func (x *TimerResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Response) ProtoMessage() {}
+func (*TimerResponse) ProtoMessage() {}
 
-func (x *Response) ProtoReflect() protoreflect.Message {
+func (x *TimerResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_timer_timer_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -102,12 +102,12 @@ func (x *Response) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Response.ProtoReflect.Descriptor instead.
-func (*Response) Descriptor() ([]byte, []int) {
+// Deprecated: Use TimerResponse.ProtoReflect.Descriptor instead.
+func (*TimerResponse) Descriptor() ([]byte, []int) {
 	return file_proto_timer_timer_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Response) GetIsOK() bool {
+func (x *TimerResponse) GetIsOK() bool {
 	if x != nil {
 		return x.IsOK
 	}
@@ -118,15 +118,17 @@ var File_proto_timer_timer_proto protoreflect.FileDescriptor
 
 var file_proto_timer_timer_proto_rawDesc = []byte{
 	0x0a, 0x17, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x72, 0x2f, 0x74, 0x69,
-	0x6d, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x17, 0x0a, 0x07, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x0c, 0x0a, 0x01, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
-	0x01, 0x74, 0x22, 0x1e, 0x0a, 0x08, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12,
-	0x0a, 0x04, 0x69, 0x73, 0x4f, 0x4b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73,
-	0x4f, 0x4b, 0x32, 0x26, 0x0a, 0x05, 0x54, 0x69, 0x6d, 0x65, 0x72, 0x12, 0x1d, 0x0a, 0x04, 0x57,
-	0x61, 0x69, 0x74, 0x12, 0x08, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x09, 0x2e,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0d, 0x5a, 0x0b, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x6d, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x74, 0x69, 0x6d, 0x65, 0x72,
+	0x22, 0x1c, 0x0a, 0x0c, 0x54, 0x69, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x0c, 0x0a, 0x01, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x01, 0x74, 0x22, 0x23,
+	0x0a, 0x0d, 0x54, 0x69, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x4b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69,
+	0x73, 0x4f, 0x4b, 0x32, 0x3c, 0x0a, 0x05, 0x54, 0x69, 0x6d, 0x65, 0x72, 0x12, 0x33, 0x0a, 0x04,
+	0x57, 0x61, 0x69, 0x74, 0x12, 0x13, 0x2e, 0x74, 0x69, 0x6d, 0x65, 0x72, 0x2e, 0x54, 0x69, 0x6d,
+	0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x74, 0x69, 0x6d, 0x65,
+	0x72, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x42, 0x0d, 0x5a, 0x0b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x72,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -143,12 +145,12 @@ func file_proto_timer_timer_proto_rawDescGZIP() []byte {
 
 var file_proto_timer_timer_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_proto_timer_timer_proto_goTypes = []interface{}{
-	(*Request)(nil),  // 0: Request
-	(*Response)(nil), // 1: Response
+	(*TimerRequest)(nil),  // 0: timer.TimerRequest
+	(*TimerResponse)(nil), // 1: timer.TimerResponse
 }
 var file_proto_timer_timer_proto_depIdxs = []int32{
-	0, // 0: Timer.Wait:input_type -> Request
-	1, // 1: Timer.Wait:output_type -> Response
+	0, // 0: timer.Timer.Wait:input_type -> timer.TimerRequest
+	1, // 1: timer.Timer.Wait:output_type -> timer.TimerResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -163,7 +165,7 @@ func file_proto_timer_timer_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_proto_timer_timer_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request); i {
+			switch v := v.(*TimerRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -175,7 +177,7 @@ func file_proto_timer_timer_proto_init() {
 			}
 		}
 		file_proto_timer_timer_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Response); i {
+			switch v := v.(*TimerResponse); i {
 			case 0:
 				return &v.state
 			case 1:

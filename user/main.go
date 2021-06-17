@@ -35,7 +35,7 @@ type userService struct {
 	r repo
 }
 
-func (s *userService) SignUp(ctx context.Context, user *pb.UserInfo, resp *pb.Response) error {
+func (s *userService) SignUp(ctx context.Context, user *pb.UserInfo, resp *pb.UserResponse) error {
 	_, err := s.r.AddUser(user)
 	if err != nil {
 		return err

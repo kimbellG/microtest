@@ -1,15 +1,17 @@
 syntax = "proto3";
 
+package timer;
+
 option go_package = "proto/timer";
 
 service Timer {
-    rpc Wait(Request) returns(Response) {}
+    rpc Wait(TimerRequest) returns(TimerResponse) {}
 }
 
-message Request {
+message TimerRequest {
     int64 t = 1;
 }
 
-message Response {
+message TimerResponse {
     bool isOK = 1;
 }

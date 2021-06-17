@@ -42,7 +42,7 @@ func NewAuthServiceEndpoints() []*api.Endpoint {
 // Client API for AuthService service
 
 type AuthService interface {
-	SignUp(ctx context.Context, in *UserInfo, opts ...client.CallOption) (*Response, error)
+	SignUp(ctx context.Context, in *UserInfo, opts ...client.CallOption) (*UserResponse, error)
 }
 
 type authService struct {
@@ -57,9 +57,9 @@ func NewAuthService(name string, c client.Client) AuthService {
 	}
 }
 
-func (c *authService) SignUp(ctx context.Context, in *UserInfo, opts ...client.CallOption) (*Response, error) {
+func (c *authService) SignUp(ctx context.Context, in *UserInfo, opts ...client.CallOption) (*UserResponse, error) {
 	req := c.c.NewRequest(c.name, "AuthService.SignUp", in)
-	out := new(Response)
+	out := new(UserResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -70,12 +70,12 @@ func (c *authService) SignUp(ctx context.Context, in *UserInfo, opts ...client.C
 // Server API for AuthService service
 
 type AuthServiceHandler interface {
-	SignUp(context.Context, *UserInfo, *Response) error
+	SignUp(context.Context, *UserInfo, *UserResponse) error
 }
 
 func RegisterAuthServiceHandler(s server.Server, hdlr AuthServiceHandler, opts ...server.HandlerOption) error {
 	type authService interface {
-		SignUp(ctx context.Context, in *UserInfo, out *Response) error
+		SignUp(ctx context.Context, in *UserInfo, out *UserResponse) error
 	}
 	type AuthService struct {
 		authService
@@ -88,6 +88,6 @@ type authServiceHandler struct {
 	AuthServiceHandler
 }
 
-func (h *authServiceHandler) SignUp(ctx context.Context, in *UserInfo, out *Response) error {
+func (h *authServiceHandler) SignUp(ctx context.Context, in *UserInfo, out *UserResponse) error {
 	return h.AuthServiceHandler.SignUp(ctx, in, out)
 }

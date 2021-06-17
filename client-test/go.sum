@@ -218,6 +218,8 @@ github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfV
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
 github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd h1:Coekwdh0v2wtGp9Gmz1Ze3eVRAWJMLokvN3QjdzCHLY=
 github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF4nAY/ojJ6r6mM=
+github.com/kimbellG/microtest/timer v0.0.0-20210616094446-e13497e3d671 h1:To6gX7n6q01hUXxrezF4yjhn0t6e4o/mv1bv3EYqsLs=
+github.com/kimbellG/microtest/timer v0.0.0-20210616094446-e13497e3d671/go.mod h1:T/AmK8nMo/uQBl38jSbpgBRyzepviR5Cj0HXerwTQTE=
 github.com/kimbellG/microtest/user/proto/user v0.0.0-20210614150959-3b8a5a6d1590 h1:TJ7slaTPhO85KNc/qlLtWv1WUWFyu5PKmk0lLx9WpHU=
 github.com/kimbellG/microtest/user/proto/user v0.0.0-20210614150959-3b8a5a6d1590/go.mod h1:yG98/wzNg1Ensl91LEZiuyj2Q/n/G9wFRXqKJPssBiM=
 github.com/kisielk/errcheck v1.1.0/go.mod h1:EZBBE59ingxPouuu3KfxchcWSUPOHkagtvWXihfKN4Q=

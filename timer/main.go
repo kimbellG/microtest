@@ -9,7 +9,7 @@ import (
 
 	pb "github.com/kimbellG/microtest/timer/proto/timer"
 
-	"github.com/micro/go-micro/v2"
+	micro "github.com/micro/go-micro/v2"
 )
 
 const (
@@ -25,9 +25,9 @@ func getBackspaceInterval(t time.Duration) string {
 	return result
 }
 
-func timer(req *pb.Request) pb.Response {
+func timer(req *pb.TimerRequest) pb.TimerResponse {
 
-	result := pb.Response{}
+	result := pb.TimerResponse{}
 
 	abort := make(chan struct{})
 	go func() {
@@ -64,7 +64,7 @@ func timer(req *pb.Request) pb.Response {
 
 type timerService struct{}
 
-func (t *timerService) Wait(ctx context.Context, r *pb.Request, resp *pb.Response) error {
+func (t *timerService) Wait(ctx context.Context, r *pb.TimerRequest, resp *pb.TimerResponse) error {
 	result := timer(r)
 	resp.IsOK = result.IsOK
 
